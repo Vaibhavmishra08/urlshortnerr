@@ -24,7 +24,7 @@ if (!fs.existsSync(dataDir)) {
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use(express.static(dirname(__dirname)));
+app.use(express.static(__dirname));
 
 // Initialize SQLite Database
 const db = new sqlite3.Database(DB_PATH, (err) => {
@@ -314,8 +314,12 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'Server is running' });
 });
 
-// Serve static files
-app.get('/urlshortner/*', (req, res) => {
+// Serve HTML for any route not matching /api
+app.get('/', (req, res) => {
+  res.sendFile(join(__dirname, 'index.html'));
+});
+
+app.get('/urlshortner*', (req, res) => {
   res.sendFile(join(__dirname, 'index.html'));
 });
 
