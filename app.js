@@ -1,5 +1,5 @@
 // API Configuration
-const API_BASE_URL = 'http://localhost:3000/api';
+const API_BASE_URL = 'https://urlshortnerr-8rh4.onrender.com/api';
 
 // Authentication Manager
 class AuthManager {
